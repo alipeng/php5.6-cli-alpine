@@ -2,7 +2,7 @@ FROM php:5.6-cli-alpine
 
 LABEL maintainer Alipeng <lipeng.yang@mobvista.com>
 
-RUN apk --update --virtual build-deps add \
+RUN apk --update --virtual build-deps add  --no-cache \
         autoconf \
         make \
         gcc \
@@ -17,7 +17,7 @@ RUN apk --update --virtual build-deps add \
         libjpeg-turbo-dev \
         libpng-dev \
         libxml2-dev && \
-    apk add \
+    apk add  --no-cache\
         icu \
         imagemagick \
         pcre \
@@ -57,15 +57,15 @@ RUN apk --update --virtual build-deps add \
         xdebug-2.5.5 \
         mongo \
         igbinary && \
-        rm -rf /tmp/pear && \
+        rm -rf /tmp/pear ~/.pearrc && \
     docker-php-ext-enable \
         imagick \
         redis \
         mongo \
         igbinary \
         xdebug && \
-    apk del \
-        build-deps
+    docker-php-source delete \
+    apk del build-deps
 
 WORKDIR /var/www
 
