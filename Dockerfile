@@ -1,4 +1,4 @@
-FROM php:5.6-fpm-alpine
+FROM php:5.6-cli-alpine
 
 LABEL maintainer Alipeng <lipeng.yang@mobvista.com>
 
